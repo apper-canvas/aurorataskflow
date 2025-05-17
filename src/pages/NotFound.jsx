@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { getIcon } from '../utils/iconUtils';
 
 export function NotFound() {
@@ -15,8 +16,8 @@ export function NotFound() {
         className="text-center max-w-lg"
       >
         <div className="flex justify-center mb-6">
-          <motion.div 
-            initial={{ scale: 0.8, rotate: -10 }}
+          <motion.div>
+            <Link to="/"
             animate={{ scale: 1, rotate: 0 }}
             transition={{ 
               type: "spring",
@@ -24,6 +25,7 @@ export function NotFound() {
               damping: 20,
               delay: 0.2
             }}
+
             className="relative"
           >
             <div className="w-24 h-24 bg-surface-100 dark:bg-surface-800 rounded-full flex items-center justify-center">

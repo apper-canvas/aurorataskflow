@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
 import MainFeature from '../components/MainFeature';
 
-export function Home() {
-  // Animation variants for staggered animations
+function Home() {
+  // Get user from Redux store
+  const { user } = useSelector(state => state.user);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -31,10 +33,12 @@ export function Home() {
       variants={containerVariants}
     >
       <motion.div variants={itemVariants} className="mb-6 sm:mb-8 md:mb-10">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-surface-800 dark:text-surface-100">
-          My Tasks
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-surface-800 dark:text-surface-100 flex items-center gap-2">
+          {user?.firstName ? `${user.firstName}'s` : 'My'} Tasks
         </h2>
         <p className="text-surface-600 dark:text-surface-400 mt-2 max-w-3xl">
+          {user?.firstName && (
+            <>Welcome, {user.firstName}! </>
           Organize your day and boost your productivity with TaskFlow's intuitive task management system.
         </p>
       </motion.div>
@@ -45,3 +49,5 @@ export function Home() {
     </motion.div>
   );
 }
+
+export default Home;
